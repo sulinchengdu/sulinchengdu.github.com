@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Finding the best practice
+title: 程序人生
 tagline: 思考，笔记和分享
 ---
 {% include JB/setup %}
