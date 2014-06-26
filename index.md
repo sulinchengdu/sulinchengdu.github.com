@@ -1,7 +1,7 @@
 ---
 layout: page
 title: 程序人生
-tagline: 思考，笔记和分享
+tagline: 技术宅用代码影响着别人的生活
 ---
 {% include JB/setup %}
 
