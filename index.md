@@ -1,7 +1,6 @@
 ---
 layout: page
 title: 程序人生
-tagline: 技术宅用代码影响着别人的生活
 ---
 {% include JB/setup %}
 
@@ -21,7 +20,7 @@ tagline: 技术宅用代码影响着别人的生活
             {{ post.date | date: "%B %e, %Y" }}
           </strong>
             | {{ post.categories[1] }}
-            | <a href="http://zhongfox.github.com{{ post.url }}/#uyan_frame" data-disqus-identifier="{{ post.url }}">comments</a>
+            | <a href="http://sulinchengdu.github.com{{ post.url }}/#uyan_frame" data-disqus-identifier="{{ post.url }}">comments</a>
         </p>
         {% if forloop.last %}
         {% else %}
