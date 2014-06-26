@@ -16,9 +16,7 @@ title : 学习OpenStruct源码
 第一步:
 
 ```ruby
-
 class OpenStruct1
 
 end
-
 ```
