@@ -15,6 +15,15 @@ title : 学习OpenStruct源码
 
 第一步:
 
+```ruby
+class OpenStruct1
+
+  def initialize(hash=nil)
+    @table = {}
+  end
+
+end
+```
 person = OpenStruct1.new
 
 person.name    = "John Smith"
@@ -30,3 +39,14 @@ NoMethodError: undefined method `name=' for #<OpenStruct1:0x007fc0809e0a78 @tabl
 person.send :method_missing, :name
 
 => NoMethodError: undefined method `name=' for #<OpenStruct1:0x007fc0809e0a78 @table={}>'
+
+以上正好做了Ruby解释器所做的工作。我们告诉 person 这个对象说, "我试着调用你一个名为 name()的方法, 但是你不明白我想干什么。" Kernel#method_missing()方法会抛出一个NoMethodError进行响应，这是它全部的工作。它就像对象的失物招领处，所有无法投递的消息最后都会来到这里。
+
+覆写method_missing()方法(Overriding method_missing())
+
+我们几乎不可能亲自调用 method_missing() 方法。不过, 你可以通过覆写它来截获无主的消息。每一个来到 method_missing()办公桌上的消息都带着被调用方法的名字, 以及所有调用时传递的参数与块。
+
+def method_missing(method, *args) # :nodoc:
+  p method
+  p *args 
+end
