@@ -18,5 +18,24 @@ title : 学习OpenStruct源码
 ```ruby
 class OpenStruct1
 
+  def initialize(hash=nil)
+    @table = {}
+  end
+
 end
 ```
+person = OpenStruct1.new
+
+person.name    = "John Smith"
+
+NoMethodError: undefined method `name=' for #<OpenStruct1:0x007fc0809e0a78 @table={}>'
+
+还记得方法查找是怎样工作的么? 当调用name()方法时, Ruby会到 person 对象的类中查询它的实例方法。如果在那里找不到 name() 方法, Ruby 会沿着祖先链向上搜寻进入Object类, 并且最终来到Kernel模块。
+
+由于Ruby在哪里都没找到 name() 方法, 它只好承认自己的失败, 并在 person 对象(最初的接收者)上调用一个名为 method_missing() 的方法。Ruby知道总会存在一个method_missing()方法，因为它是Kernel的一个实例方法, 而所有的对象都继承自Kernel模块。
+
+为了验证上面的理论, 我们直接调用 method_missing() 方法来进行试验, 尽管这是一个私有方法, 但是还可以通过 send() 方法来做到:
+
+person.send :method_missing, :name
+
+=> NoMethodError: undefined method `name=' for #<OpenStruct1:0x007fc0809e0a78 @table={}>'
