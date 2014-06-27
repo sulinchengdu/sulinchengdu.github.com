@@ -15,15 +15,6 @@ title : 学习OpenStruct源码
 
 第一步:
 
-```ruby
-class OpenStruct1
-
-  def initialize(hash=nil)
-    @table = {}
-  end
-
-end
-```
 person = OpenStruct1.new
 
 person.name    = "John Smith"
